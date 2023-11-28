@@ -41,11 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    //_loadNotes();
-    _loadrecords();
-
+    _loadNotes();
   }
-   User futureUser = new User(id: "", name: "");
+
+  User futureUser = User(id: "", name: "");
   void _loadrecords() async{
       User UserDetails = await dbHelper.fetchAlbum();
       setState(() {
@@ -84,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     NameController.text = _notes[index].name;
     DescriptionController.text = _notes[index].description;
     IdController.text = _notes[index].id.toString();
+    IndexController.text = index.toString();
   }
 
   void _updateNote() async {
@@ -208,6 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
+                              String x = IndexController.text;
                               _updateNote();
                             }
                           },
